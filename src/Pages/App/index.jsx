@@ -6,8 +6,7 @@ import NotFound from '../NotFound'
 import SingIn from '../SingIn'
 import './App.css'
 import { BrowserRouter, useRoutes } from 'react-router-dom';
-import Navbar from '../../Components/Navbar'
-
+import Navbar from "../../Components/Navbar";
 
 const AppRoutes = () => {
     let routes = useRoutes([
