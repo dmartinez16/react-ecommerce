@@ -1,30 +1,56 @@
 import { NavLink } from "react-router-dom";
 
-const Navbar = () => {
+let ContentLeft = [
+    { name: "Shopi", to: "/", class: "font-semibold text-lg" },
+    { name: "All", to: "/"},
+    { name: "Clothes", to: "/clothes"},
+    { name: "Electronics", to: "/electronics"},
+    { name: "Furnitures", to: "/furniture"},
+    { name: "Toys", to: "/toys"},
+    { name: "Others", to: "/others"},
+]
+ 
+let ContentRight = [
+    { name: "My Orders", to: "/my-orders" },
+    { name: "My Account", to: "/my-account" },
+    { name: "Sign In", to: "/signin" },
+]
+ 
 
-   const navLinkClass = ({ isActive }) =>
-    isActive ? "underline font-semibold underline-offset-4" : "";
 
-    return (
-        <nav className="flex justify-between item-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light">
-            <ul className="flex items-center gap-3">
-                <li className="font-semibold text-lg"><NavLink to='/'>Shopi</NavLink></li>
-                <li><NavLink to='/' className={navLinkClass}>All</NavLink></li>
-                <li><NavLink to='/clothes' className={navLinkClass}>Clothes</NavLink></li>
-                <li><NavLink to='/electronics' className={navLinkClass}>Electronics</NavLink></li>
-                <li><NavLink to='/furniture' className={navLinkClass}>Furniture</NavLink></li>
-                <li><NavLink to='/toys' className={navLinkClass}>Toys</NavLink></li>
-                <li><NavLink to='/others' className={navLinkClass}> Others </NavLink></li>
-            </ul>
-            <ul className="flex items-center gap-3">
-                <li className="font-semibold">dmartinezing16@gmail.com</li>
-                <li><NavLink to='/my-orders' className={navLinkClass}>My Orders</NavLink></li>
-                <li><NavLink to='/my-account' className={navLinkClass}>My Account</NavLink></li>
-                <li><NavLink to='/SingIn' className={navLinkClass}>My Sing out</NavLink></li>
-                <li> </li>
-            </ul>
-        </nav>
-    )
-}
+const NavBar = () => {
 
-export default Navbar
+  const activeStyle = {
+    textDecoration: "underline",
+  };
+
+  return (
+    <nav className="flex justify-between font-light px-8 py-4 items-center text-sm fixed top-0 z-10 w-full">
+      <ul className="flex gap-3 items-center">
+        {ContentLeft.map((item, index) => (
+          <li key={index} className={item.class ?? ""}>
+            <NavLink to={item.to} style={({ isActive }) =>
+              isActive ? activeStyle : undefined}>
+              {item.name}
+            </NavLink>
+          </li>
+        ))}
+      </ul>
+
+      <ul className="flex gap-3 items-center">
+        <li>ccgonzalez@syc.com.co</li>
+
+        {ContentRight.map((item, index) => (
+          <li key={index}>
+            <NavLink to={item.to} style={({ isActive }) =>
+              isActive ? activeStyle : undefined}>
+              {item.name}
+            </NavLink>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+};
+
+export default NavBar;
